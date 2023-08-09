@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    hi
+    <script>
+        
+        function getComputerChoice() {
+            rng = Math.floor(Math.random() * 3)
+            if (rng === 0) {
+                return "rock";
+            } else if (rng === 1) {
+                return "paper";
+            } else {
+                return "scissor";
+            }
+        }
+
+        function round(playerSelection, computerSelection) {
+            if (playerSelection == computerSelection) {
+                return `It's a draw! You both chose ${playerSelection}`
+            } else if (
+                (playerSelection == "rock" && computerSelection == "scissor") ||
+                (playerSelection == "paper" && computerSelection == "rock") ||
+                (playerSelection == "scissor" && computerSelection == "paper"))
+            {
+                return `You win! You chose ${playerSelection} and the opponent chose ${computerSelection}`
+            } else {
+                return `You lose! You chose ${playerSelection} and the opponent chose ${computerSelection}`
+            }
+        }
+
+        function checkWinner(playerSelection, computerSelection) {
+            if (
+                (playerSelection == "rock" && computerSelection == "scissor") ||
+                (playerSelection == "paper" && computerSelection == "rock") ||
+                (playerSelection == "scissor" && computerSelection == "paper"))
+            {
+                return `win`
+            } else {
+                return `lose`
+            }
+        }
+
+        function getPlayerChoice() {
+            let choice = prompt("Rock, Paper, or Scissor");
+            return choice.toLowerCase();
+        }
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            
+            console.log("Welcome!")
+            for (let i = 0; i < 5; i++) {
+                const playerSelection = getPlayerChoice();
+                const computerSelection = getComputerChoice();
+                console.log(round(playerSelection, computerSelection));
+                if (checkWinner(playerSelection, computerSelection) == "win") {
+                    playerScore++;
+                } else if (checkWinner(playerSelection, computerSelection) == "lose") {
+                    computerScore++;
+                }
+            }
+
+            if (playerScore > computerScore) {
+                console.log("Game Over! You Won!");
+            } else {
+                console.log('Game Over! The Computer Won :c');
+            }
+        }
+
+        game()
+
+    </script>
+</body>
+</html>
